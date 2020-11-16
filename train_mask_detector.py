@@ -1,7 +1,7 @@
-# USAGE
+# Su dung
 # python train_mask_detector.py --dataset dataset
 
-# import the necessary packages
+# Khai bao thu vien
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras.layers import AveragePooling2D
