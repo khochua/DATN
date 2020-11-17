@@ -1,5 +1,5 @@
 # USAGE
-# python train_model.py --embeddings output/embeddings.pickle \ --recognizer output/recognizer.pickle \ --le output/le.pickle
+# python train_model.py --embeddings models/embeddings.pickle --recognizer models/recognizer.pickle --le models/le.pickle
 # import the necessary packages
 from sklearn.preprocessing import LabelEncoder
 from sklearn.svm import SVC
@@ -29,6 +29,10 @@ labels = le.fit_transform(data["names"])
 # then produce the actual face recognition
 print("[INFO] training model...")
 recognizer = SVC(C=1.0, kernel="linear", probability=True)
+
+print(labels)
+
+
 recognizer.fit(data["embeddings"], labels)
 
 # write the actual face recognition model to disk

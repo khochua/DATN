@@ -128,6 +128,9 @@ print("[INFO] starting video stream...")
 vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
+# khoi tao voi file MP4
+# vs = cv2.VideoCapture(/)
+
 # Lap qua cac khung hinh tu luong Video
 while True:
 	# lay khung hinh tu luong video stream va thay doi
