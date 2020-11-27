@@ -32,11 +32,11 @@ weightsPath = os.path.sep.join([args["face"],
 	"res10_300x300_ssd_iter_140000.caffemodel"])
 net = cv2.dnn.readNet(prototxtPath, weightsPath)
 
-# load our serialized face embedding model from disk
+# tai mo hinh nhung khuon mat
 print("[INFO] loading face recognizer...")
 embedder = cv2.dnn.readNetFromTorch("models/openface_nn4.small2.v1.t7")
 
-# load the actual face recognition model along with the label encoder
+# tai mo hinh nhan dang khuon mat thuc te cung voi bo ma hoa nhan
 recognizer = pickle.loads(open("models/recognizer.pickle", "rb").read())
 le = pickle.loads(open("models/le.pickle", "rb").read())
 

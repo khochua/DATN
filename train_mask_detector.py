@@ -24,7 +24,7 @@ import numpy as np
 import argparse
 import os
 
-# construct the argument parser and parse the arguments
+# Cung cap cac doi so cho chuong trinh
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--dataset", required=True,
 	help="path to input dataset")
@@ -35,38 +35,38 @@ ap.add_argument("-m", "--model", type=str,
 	help="path to output face mask detector model")
 args = vars(ap.parse_args())
 
-# initialize the initial learning rate, number of epochs to train for,
-# and batch size
+# khoi tao learning rate, EPOCHS,
+# va batch size
 INIT_LR = 1e-4
 EPOCHS = 20
 BS = 32
 
-# grab the list of images in our dataset directory, then initialize
-# the list of data (i.e., images) and class images
+# lay danh sach hinh anh trong thu muc data,
+# sau do khoi tao mang du lieu va mang nhan
 print("[INFO] loading images...")
 imagePaths = list(paths.list_images(args["dataset"]))
 data = []
 labels = []
 
-# loop over the image paths
+# lap qua cac duong dan hinh anh
 for imagePath in imagePaths:
-	# extract the class label from the filename
+	# trich xuat nhan lop tu ten tep
 	label = imagePath.split(os.path.sep)[-2]
 
-	# load the input image (224x224) and preprocess it
+	# tai hinh anh dau vao (224x224) va xu ly no truoc
 	image = load_img(imagePath, target_size=(224, 224))
 	image = img_to_array(image)
 	image = preprocess_input(image)
 
-	# update the data and labels lists, respectively
+	# cap nhat du lieu va danh sach nhan, tuong ung
 	data.append(image)
 	labels.append(label)
 
-# convert the data and labels to NumPy arrays
+# Chuyen doi du lieu va nhan sang dang mang Numpy
 data = np.array(data, dtype="float32")
 labels = np.array(labels)
 
-# perform one-hot encoding on the labels
+# thuc hien one-hot encoding tren cac nhan
 lb = LabelBinarizer()
 labels = lb.fit_transform(labels)
 labels = to_categorical(labels)
@@ -136,11 +136,11 @@ predIdxs = np.argmax(predIdxs, axis=1)
 print(classification_report(testY.argmax(axis=1), predIdxs,
 	target_names=lb.classes_))
 
-# serialize the model to disk
+# luu model
 print("[INFO] saving mask detector model...")
 model.save(args["model"], save_format="h5")
 
-# plot the training loss and accuracy
+# hien thi mat mat dao tao va do chinh xac
 N = EPOCHS
 plt.style.use("ggplot")
 plt.figure()

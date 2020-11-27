@@ -1,5 +1,5 @@
 # Su dung
-# python extract_embeddings.py --dataset dataset/mydata/ --embeddings models/embeddings.pickle --detector models --embedding-model models/openface_nn4.small2.v1.t7 
+# python extract_embeddings.py --dataset dataset/ --embeddings models/embeddings.pickle --detector models --embedding-model models/openface_nn4.small2.v1.t7 
 # import the necessary packages
 from imutils import paths
 import numpy as np
